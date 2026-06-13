@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UI/UX Portfolio</title>
+  <meta name="description" content="UI/UX 디자이너 포트폴리오" />
+
+  <!-- Pretendard -->
+  <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+  <!-- 스타일 (변수 → 본문 순서) -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===================== 공통 헤더 (components.js 주입) ============ -->
+  <header class="site-header" data-include="header"></header>
+
+  <main>
+
+    <!-- ============================================================= -->
+    <!-- 01. HERO                                                       -->
+    <!-- ============================================================= -->
+    <section class="hero" id="hero" data-section="01">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <span class="eyebrow" data-reveal>01</span>
+          <h1 class="hero__title" data-reveal>
+            <span class="line">Designing</span>
+            <span class="line">clear &amp; calm</span>
+            <span class="line">digital products.</span>
+          </h1>
+          <p class="hero__lead" data-reveal>
+            사용자의 흐름을 정리하고, 군더더기를 덜어내는 UI/UX 디자이너입니다.
+            리서치부터 인터랙션까지, 경험 전반을 설계합니다.
+          </p>
+
+          <div class="hero__scroll" data-reveal>
+            <span>SCROLL</span>
+            <span class="mouse"><i></i></span>
+          </div>
+        </div>
+
+        <!-- 이미지 슬롯 (유리구슬 비주얼) -->
+        <div class="hero__visual" data-parallax>
+          <div class="img-slot img-slot--orb" data-slot="hero-orb">
+            <span class="img-slot__label">IMAGE</span>
+          </div>
+          <div class="img-slot img-slot--cube" data-slot="hero-cube"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================= -->
+    <!-- 02. SELECTED WORKS                                            -->
+    <!-- ============================================================= -->
+    <section class="section works" id="works" data-section="02">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="eyebrow">02</span>
+          <h2 class="section__title">Selected Works</h2>
+        </header>
+
+        <div class="works__grid">
+          <!-- 카드 1 -->
+          <article class="work-card" data-reveal>
+            <div class="img-slot work-card__thumb" data-slot="work-1">
+              <span class="work-card__no">01</span>
+            </div>
+            <div class="work-card__body">
+              <div class="work-card__meta">
+                <h3 class="work-card__title">Project Title One</h3>
+                <p class="work-card__cat">Mobile App · UX</p>
+              </div>
+              <a class="work-card__go" href="#" aria-label="자세히 보기">→</a>
+            </div>
+          </article>
+
+          <!-- 카드 2 -->
+          <article class="work-card" data-reveal>
+            <div class="img-slot work-card__thumb" data-slot="work-2">
+              <span class="work-card__no">02</span>
+            </div>
+            <div class="work-card__body">
+              <div class="work-card__meta">
+                <h3 class="work-card__title">Project Title Two</h3>
+                <p class="work-card__cat">Web Service · UI</p>
+              </div>
+              <a class="work-card__go" href="#" aria-label="자세히 보기">→</a>
+            </div>
+          </article>
+
+          <!-- 카드 3 -->
+          <article class="work-card" data-reveal>
+            <div class="img-slot work-card__thumb" data-slot="work-3">
+              <span class="work-card__no">03</span>
+            </div>
+            <div class="work-card__body">
+              <div class="work-card__meta">
+                <h3 class="work-card__title">Project Title Three</h3>
+                <p class="work-card__cat">Brand · Design System</p>
+              </div>
+              <a class="work-card__go" href="#" aria-label="자세히 보기">→</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================= -->
+    <!-- 03. BEFORE & AFTER                                            -->
+    <!-- ============================================================= -->
+    <section class="section compare" id="compare" data-section="03">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="eyebrow">03</span>
+          <h2 class="section__title">Before &amp; After</h2>
+        </header>
+
+        <!-- 드래그 비교 슬라이더 -->
+        <div class="ba" data-reveal>
+          <div class="ba__viewport" data-ba>
+            <div class="img-slot ba__img ba__img--after" data-slot="after">
+              <span class="ba__tag ba__tag--after">AFTER</span>
+            </div>
+            <div class="ba__img-wrap" data-ba-before>
+              <div class="img-slot ba__img ba__img--before" data-slot="before">
+                <span class="ba__tag ba__tag--before">BEFORE</span>
+              </div>
+            </div>
+            <div class="ba__handle" data-ba-handle>
+              <button class="ba__knob" aria-label="비교 슬라이더 드래그">
+                <span>←</span><span>→</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="ba__dots" data-ba-dots>
+            <button class="is-active" aria-label="1"></button>
+            <button aria-label="2"></button>
+            <button aria-label="3"></button>
+            <button aria-label="4"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================= -->
+    <!-- 04. SKILLS                                                    -->
+    <!-- ============================================================= -->
+    <section class="section skills" id="skills" data-section="04">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="eyebrow">04</span>
+          <h2 class="section__title">Skills</h2>
+        </header>
+
+        <ul class="skills__grid">
+          <li class="skill" data-reveal>
+            <span class="skill__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path d="M16 6.5a3 3 0 0 1 0 6"/><path d="M18.5 19c0-2.4-1.4-4.2-3.5-4.8"/></svg>
+            </span>
+            <h3 class="skill__name">User Research</h3>
+            <p class="skill__desc">인터뷰 · 설문 · 페르소나</p>
+          </li>
+
+          <li class="skill" data-reveal>
+            <span class="skill__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l4-1 9.5-9.5a2 2 0 0 0 0-2.8l-.2-.2a2 2 0 0 0-2.8 0L5 16z"/><path d="M13.5 6.5l3.9 3.9"/></svg>
+            </span>
+            <h3 class="skill__name">UI Design</h3>
+            <p class="skill__desc">비주얼 · 컴포넌트 · 타이포</p>
+          </li>
+
+          <li class="skill" data-reveal>
+            <span class="skill__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 8l-4 4 4 4"/><path d="M15 8l4 4-4 4"/></svg>
+            </span>
+            <h3 class="skill__name">Prototyping</h3>
+            <p class="skill__desc">인터랙션 · 코드 핸드오프</p>
+          </li>
+
+          <li class="skill" data-reveal>
+            <span class="skill__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9v6h3l6 4V5L7 9z"/><path d="M16.5 8.5a4 4 0 0 1 0 7"/></svg>
+            </span>
+            <h3 class="skill__name">Strategy</h3>
+            <p class="skill__desc">기획 · 정보구조 · 플로우</p>
+          </li>
+
+          <li class="skill" data-reveal>
+            <span class="skill__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l2.2 5.6L20 9l-4.4 3.6L17 18l-5-3.2L7 18l1.4-5.4L4 9l5.8-.4z"/></svg>
+            </span>
+            <h3 class="skill__name">Design System</h3>
+            <p class="skill__desc">토큰 · 가이드 · 일관성</p>
+          </li>
+
+          <li class="skill" data-reveal>
+            <span class="skill__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5"/><path d="M12 12v9"/></svg>
+            </span>
+            <h3 class="skill__name">3D / Motion</h3>
+            <p class="skill__desc">모션 · 3D · 인터랙션</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ============================================================= -->
+    <!-- 05. ALL PROJECTS                                              -->
+    <!-- ============================================================= -->
+    <section class="section projects" id="projects" data-section="05">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="eyebrow">05</span>
+          <h2 class="section__title">All Projects</h2>
+        </header>
+
+        <!-- 필터 -->
+        <div class="filters" data-reveal>
+          <button class="filter is-active" data-filter="all">All</button>
+          <button class="filter" data-filter="ux">UX</button>
+          <button class="filter" data-filter="ui">UI</button>
+          <button class="filter" data-filter="brand">Brand</button>
+          <button class="filter" data-filter="motion">Motion</button>
+        </div>
+
+        <!-- 그리드 8개 -->
+        <div class="projects__grid">
+          <a class="project img-slot" data-slot="p1" data-cat="ux"     data-reveal href="#"></a>
+          <a class="project img-slot" data-slot="p2" data-cat="ui"     data-reveal href="#"></a>
+          <a class="project img-slot" data-slot="p3" data-cat="brand"  data-reveal href="#"></a>
+          <a class="project img-slot" data-slot="p4" data-cat="motion" data-reveal href="#"></a>
+          <a class="project img-slot" data-slot="p5" data-cat="ui"     data-reveal href="#"></a>
+          <a class="project img-slot" data-slot="p6" data-cat="ux"     data-reveal href="#"></a>
+          <a class="project img-slot" data-slot="p7" data-cat="motion" data-reveal href="#"></a>
+          <a class="project img-slot" data-slot="p8" data-cat="brand"  data-reveal href="#"></a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================= -->
+    <!-- 06. LET'S CONNECT                                             -->
+    <!-- ============================================================= -->
+    <section class="section connect" id="connect" data-section="06">
+      <div class="container connect__grid">
+        <div class="connect__copy">
+          <span class="eyebrow" data-reveal>06</span>
+          <h2 class="connect__title" data-reveal>Let's Connect</h2>
+          <p class="connect__lead" data-reveal>
+            새로운 프로젝트, 협업, 또는 그냥 인사도 좋아요.
+            언제든 편하게 연락 주세요.
+          </p>
+          <a class="connect__mail" href="mailto:hello@example.com" data-reveal>hello@example.com</a>
+
+          <ul class="connect__social" data-reveal>
+            <li><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg></a></li>
+            <li><a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 10v7M8 7.2v.01M12 17v-4a2 2 0 0 1 4 0v4"/></svg></a></li>
+            <li><a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 19c-4 1.4-4-2.2-5.5-2.7M15 21v-3.2a2.8 2.8 0 0 0-.8-2.2c2.6-.3 5.3-1.3 5.3-5.8a4.5 4.5 0 0 0-1.2-3.1 4.2 4.2 0 0 0-.1-3.1s-1-.3-3.3 1.2a11.4 11.4 0 0 0-6 0C6.6 1.6 5.6 1.9 5.6 1.9a4.2 4.2 0 0 0-.1 3.1A4.5 4.5 0 0 0 4.3 8c0 4.5 2.7 5.5 5.3 5.8a2.8 2.8 0 0 0-.8 2.1V21"/></svg></a></li>
+            <li><a href="#" aria-label="Behance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h4.2a2.4 2.4 0 0 1 0 4.8H3zM3 11.8h4.6a2.6 2.6 0 0 1 0 5.2H3zM14.5 13.5h6a3 3 0 0 0-6 0 3 3 0 0 0 5.4 1.8M15.5 8h4"/></svg></a></li>
+          </ul>
+        </div>
+
+        <div class="connect__visual" data-parallax>
+          <div class="img-slot img-slot--orb img-slot--orb-sm" data-slot="connect-orb">
+            <span class="img-slot__label">IMAGE</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== 공통 푸터 (components.js 주입) ============ -->
+  <footer class="site-footer" data-include="footer"></footer>
+
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- 공통 컴포넌트 → 인터랙션 -->
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

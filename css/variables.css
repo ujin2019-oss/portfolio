@@ -1,0 +1,82 @@
+/* =====================================================================
+   variables.css  —  디자인 토큰 (여기만 수정하면 전체 톤이 바뀝니다)
+   --------------------------------------------------------------------
+   · 색상 / 간격 / 여백 / 글자크기 / 두께 / radius 를 모두 변수화
+   · 폭(width)에 따라 자동 스케일되도록 clamp() 사용
+   ===================================================================== */
+
+:root {
+  /* ---------- 1. 컬러 -------------------------------------------------- */
+  --color-main:        #0a0a0b;   /* 메인(텍스트/강조 블랙) */
+  --color-sub:         #6b6b72;   /* 서브(보조 텍스트 그레이) */
+  --color-point:       #6c5ce7;   /* 포인트(바이올렛) */
+  --color-point-soft:  #a9a0f2;   /* 포인트 연한 톤 */
+  --color-point-tint:  #efedfc;   /* 포인트 배경 틴트 */
+
+  --color-bg:          #ffffff;   /* 페이지 배경 */
+  --color-bg-soft:     #f4f4f6;   /* 카드/슬롯 배경 */
+  --color-bg-elevated: #fafafb;   /* 살짝 띄운 섹션 배경 */
+  --color-line:        #e6e6ea;   /* 구분선 */
+  --color-line-strong: #d2d2d8;   /* 진한 구분선 */
+
+  /* 히어로 그라데이션(유리구슬 분위기) */
+  --grad-hero: linear-gradient(135deg, #f3f1ff 0%, #f7f7fb 45%, #eef0ff 100%);
+
+  /* ---------- 2. 타이포 ----------------------------------------------- */
+  --font-base: "Pretendard", "Pretendard Variable", -apple-system,
+               BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+
+  /* 계층별 글자 크기 (1600 기준 → 폭 따라 clamp 스케일) */
+  --fs-display: clamp(40px, 4.5vw, 84px);   /* 히어로 헤드라인 */
+  --fs-h1:      clamp(32px, 3.0vw, 56px);   /* 섹션 큰 제목 */
+  --fs-h2:      clamp(22px, 1.7vw, 30px);   /* 섹션 라벨/소제목 */
+  --fs-h3:      clamp(18px, 1.25vw, 22px);  /* 카드 제목 */
+  --fs-body:    clamp(15px, 1.0vw, 18px);   /* 본문 */
+  --fs-small:   clamp(13px, 0.82vw, 15px);  /* 캡션/메타 */
+  --fs-eyebrow: clamp(11px, 0.78vw, 13px);  /* 번호/태그 라벨 */
+
+  /* 두께 */
+  --fw-light:   300;
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semibold:600;
+  --fw-bold:    700;
+  --fw-black:   800;
+
+  /* 자간 / 행간 */
+  --ls-tight:   -0.03em;
+  --ls-normal:  -0.01em;
+  --ls-wide:    0.18em;
+  --lh-tight:   1.05;
+  --lh-snug:    1.3;
+  --lh-body:    1.65;
+
+  /* ---------- 3. 레이아웃 / 간격 -------------------------------------- */
+  --maxw:        1600px;   /* PC 기준 콘텐츠 최대폭 */
+  --gutter:      clamp(20px, 4vw, 80px);    /* 좌우 페이지 여백 */
+
+  --section-gap:  clamp(80px, 9vw, 180px);  /* 섹션 사이 세로 간격 */
+  --block-gap:    clamp(28px, 2.6vw, 52px); /* 라벨↔콘텐츠 간격 */
+  --grid-gap:     clamp(16px, 1.6vw, 32px); /* 카드/그리드 간격 */
+
+  /* ---------- 4. 모양 ------------------------------------------------- */
+  --radius-sm:  10px;
+  --radius-md:  16px;
+  --radius-lg:  24px;
+  --radius-xl:  32px;
+  --radius-pill: 999px;
+
+  /* ---------- 5. 그림자 ----------------------------------------------- */
+  --shadow-sm: 0 2px 8px rgba(20, 20, 30, 0.05);
+  --shadow-md: 0 12px 34px rgba(20, 20, 30, 0.08);
+  --shadow-lg: 0 26px 60px rgba(20, 20, 30, 0.12);
+
+  /* ---------- 6. 모션 ------------------------------------------------- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 0.25s;
+  --dur:      0.45s;
+  --dur-slow: 0.8s;
+
+  /* ---------- 7. 헤더 ------------------------------------------------- */
+  --header-h: clamp(60px, 5vw, 84px);
+}
