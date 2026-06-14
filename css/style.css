@@ -81,6 +81,13 @@ img, svg { display: block; max-width: 100%; }
   opacity: .6;
 }
 
+/* 실제 이미지가 들어간 슬롯 */
+.img-slot > img { width: 100%; height: 100%; object-fit: cover; }
+.img-slot.has-img { background: transparent; box-shadow: none; }
+.img-slot.has-img::after { display: none; }
+/* 투명 PNG(유리구슬 등)는 비율 유지하며 꽉 차지 않게 */
+.img-slot--orb.has-img > img { object-fit: contain; }
+
 /* =====================================================================
    HEADER
    ===================================================================== */
@@ -166,7 +173,13 @@ img, svg { display: block; max-width: 100%; }
   letter-spacing: var(--ls-tight);
   margin: clamp(16px, 1.4vw, 28px) 0 clamp(20px, 1.8vw, 34px);
 }
-.hero__title .line { display: block; overflow: hidden; }
+.hero__title .line {
+  display: block;
+  overflow: hidden;
+  /* 디센더(g, y 등)가 잘리지 않도록 라인 박스에 여백 + 음수마진으로 간격 보정 */
+  padding: 0.08em 0.04em 0.2em;
+  margin-bottom: -0.16em;
+}
 .hero__lead {
   max-width: 46ch;
   color: var(--color-sub);
@@ -254,6 +267,103 @@ img, svg { display: block; max-width: 100%; }
 .work-card:hover .work-card__go { background: var(--color-point); transform: translateX(2px); }
 
 /* =====================================================================
+   WEB APP DESIGN (디바이스 목업 갤러리)
+   ===================================================================== */
+.section__head--stack { flex-direction: column; align-items: flex-start; gap: clamp(8px, 0.6vw, 14px); }
+.webapp__title {
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-black);
+  letter-spacing: var(--ls-tight);
+  text-transform: uppercase;
+}
+.webapp__sub { font-size: var(--fs-body); color: var(--color-sub); }
+
+.device {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.device__card {
+  flex: 1;
+  background: var(--color-point-tint);
+  border-radius: var(--radius-xl);
+  padding: clamp(28px, 4vw, 72px) clamp(40px, 8vw, 140px);
+}
+
+/* 모니터 */
+.monitor { width: 100%; max-width: 760px; margin-inline: auto; }
+.monitor__screen {
+  aspect-ratio: 16 / 10;
+  border: clamp(8px, 0.8vw, 13px) solid #1f2532;
+  border-radius: clamp(10px, 1vw, 16px);
+  background: var(--color-bg-soft);
+  box-shadow: var(--shadow-md);
+}
+.monitor__stand {
+  width: clamp(90px, 9vw, 150px);
+  height: clamp(26px, 2.6vw, 44px);
+  margin: 0 auto;
+  background: linear-gradient(#262c3a, #1c212c);
+  clip-path: polygon(34% 0, 66% 0, 100% 100%, 0 100%);
+}
+.monitor__base {
+  width: clamp(140px, 14vw, 230px);
+  height: clamp(8px, 0.8vw, 12px);
+  margin: 0 auto;
+  background: #1f2532;
+  border-radius: var(--radius-pill);
+}
+
+/* 좌우 네비게이션 */
+.device__nav {
+  position: absolute; top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: clamp(44px, 3.4vw, 58px); aspect-ratio: 1;
+  display: grid; place-items: center;
+  border-radius: var(--radius-pill);
+  background: #fff;
+  box-shadow: var(--shadow-md);
+  font-size: clamp(20px, 1.6vw, 26px);
+  color: var(--color-main);
+  line-height: 1;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.device__nav:hover { background: var(--color-point); color: #fff; }
+.device__nav--prev { left: clamp(-10px, -0.6vw, 0px); }
+.device__nav--next { right: clamp(-10px, -0.6vw, 0px); }
+.device__nav--prev:hover { transform: translateY(-50%) translateX(-3px); }
+.device__nav--next:hover { transform: translateY(-50%) translateX(3px); }
+
+/* 썸네일 — 가로 한 줄 */
+.device__thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--grid-gap);
+  margin-top: clamp(24px, 2.6vw, 48px);
+}
+.thumb {
+  width: clamp(64px, 6vw, 104px);
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-soft);
+  transition: transform var(--dur-fast) var(--ease), outline-color var(--dur-fast) var(--ease);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.thumb__label { position: relative; z-index: 2; font-size: var(--fs-eyebrow); color: var(--color-sub); font-weight: var(--fw-semibold); opacity: .6; }
+.thumb:hover { transform: translateY(-4px); }
+.thumb.is-active { outline-color: var(--color-point); }
+
+@media (max-width: 680px) {
+  .device__card { padding: clamp(20px,5vw,32px) clamp(36px,12vw,56px); }
+  .device__thumbs { gap: 12px; }
+  .thumb { width: clamp(54px, 16vw, 76px); }
+}
+
+/* =====================================================================
    03. BEFORE & AFTER
    ===================================================================== */
 .ba__viewport {
@@ -319,6 +429,102 @@ img, svg { display: block; max-width: 100%; }
   transition: width var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
 }
 .ba__dots button.is-active { width: 24px; background: var(--color-point); }
+
+/* =====================================================================
+   PROFILE
+   ===================================================================== */
+.profile__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: clamp(32px, 5vw, 90px);
+}
+.profile__title {
+  font-size: var(--fs-display);
+  font-weight: var(--fw-black);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-tight);
+  margin-bottom: clamp(24px, 2.4vw, 44px);
+}
+.profile__list { margin: 0; }
+.profile__row {
+  display: grid;
+  grid-template-columns: clamp(64px, 6vw, 96px) 1fr;
+  align-items: center;
+  gap: clamp(16px, 2vw, 40px);
+  padding: clamp(12px, 1.1vw, 20px) 0;
+  border-bottom: 1px solid var(--color-line);
+}
+.profile__row dt {
+  color: var(--color-point);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-body);
+}
+.profile__row dd {
+  margin: 0;
+  color: var(--color-main);
+  font-size: var(--fs-body);
+}
+.profile__desc {
+  margin-top: clamp(22px, 2vw, 38px);
+  max-width: 52ch;
+  color: var(--color-sub);
+}
+.profile__visual { position: relative; }
+.profile__photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-lg);
+}
+
+@media (max-width: 1024px) {
+  .profile__grid { grid-template-columns: 1fr; }
+  .profile__visual { order: -1; max-width: 440px; }
+  .profile__photo { aspect-ratio: 4 / 3; }
+}
+
+/* =====================================================================
+   TOOLS (사용 가능한 기술)
+   ===================================================================== */
+.tools__title {
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-black);
+  letter-spacing: var(--ls-tight);
+}
+.tools__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--grid-gap);
+}
+.tool-card {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1vw, 20px);
+  padding: clamp(16px, 1.3vw, 26px) clamp(18px, 1.5vw, 30px);
+  background: var(--color-point-tint);
+  border-radius: var(--radius-lg);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.tool-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+.tool-card__icon {
+  flex: none;
+  width: clamp(44px, 3.4vw, 60px);
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-soft);
+}
+.tool-card__name {
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-normal);
+}
+
+@media (max-width: 1024px) {
+  .tools__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 680px) {
+  .tools__grid { grid-template-columns: 1fr; }
+}
 
 /* =====================================================================
    04. SKILLS
