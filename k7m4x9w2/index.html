@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Loading…</title>
+<style>
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #333;
+  }
+  .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 24px;
+  }
+  .spinner {
+    width: 36px;
+    height: 36px;
+    border: 4px solid #e0e0e0;
+    border-top-color: #888;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    margin-bottom: 18px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  p { font-size: 15px; color: #777; margin: 0; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="spinner"></div>
+    <p>페이지를 불러오는 중입니다…</p>
+  </div>
+
+<script>
+(function () {
+  // ===== 설정 =====
+  var NOTIFY_EMAIL = "ujin2019@gmail.com";  // 알림 받을 이메일
+  var COOLDOWN_MIN = 10;                      // 같은 사람(=같은 id) 알림 최소 간격(분)
+
+  // ===== 1. ?id=용도 읽기 =====
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get("id") || "(미지정)";
+
+  // ===== 2. 10분 쿨다운 체크 (id 기준, localStorage 저장) =====
+  var storageKey = "lastNotify_" + id;
+  var now = Date.now();
+  var last = parseInt(localStorage.getItem(storageKey) || "0", 10);
+  var cooldownMs = COOLDOWN_MIN * 60 * 1000;
+
+  if (last && (now - last) < cooldownMs) {
+    // 최근에 이미 보냈으면 건너뜀
+    return;
+  }
+
+  // ===== 3. 메일 내용 구성 =====
+  var kstTime = new Date().toLocaleString("ko-KR", {
+    timeZone: "Asia/Seoul",
+    year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", second: "2-digit",
+    hour12: false
+  });
+
+  var payload = {
+    "대상(id)": id,
+    "접속시각(한국시간)": kstTime,
+    "페이지주소": window.location.href,
+    "브라우저정보": navigator.userAgent,
+    "_subject": "[방문알림] " + id + " 님이 페이지에 접속했습니다",
+    "_template": "table"
+  };
+
+  // ===== 4. FormSubmit AJAX 전송 =====
+  fetch("https://formsubmit.co/ajax/" + NOTIFY_EMAIL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(function (res) { return res.json(); })
+  .then(function () {
+    // 전송 성공 시에만 시각 저장 (실패하면 다음 방문 때 다시 시도)
+    localStorage.setItem(storageKey, String(now));
+  })
+  .catch(function () {
+    // 전송 실패는 조용히 무시 (방문자에게 노출하지 않음)
+  });
+})();
+</script>
+</body>
+</html>
