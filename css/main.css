@@ -1789,6 +1789,68 @@ html {
 }
 .ap-card:hover .ap-card__img img { transform: scale(1.04); }
 
+/* ALL PROJECT image preview: native modal stays above the fixed header. */
+html.image-preview-open,
+html.image-preview-open body {
+  overflow: hidden;
+}
+.image-preview {
+  width: min(1200px, calc(100vw - 32px));
+  height: min(900px, 90vh);
+  height: min(900px, 90dvh);
+  max-width: none;
+  max-height: none;
+  margin: auto;
+  padding: 16px;
+  border: 0;
+  border-radius: 16px;
+  background: rgba(24, 24, 28, 0.75);
+  color: #c4adff;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+}
+.image-preview[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 16px;
+}
+.image-preview::backdrop { background: rgba(0, 0, 0, 0.78); }
+.image-preview__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.image-preview__title {
+  flex: 1;
+  min-width: 0;
+  font-weight: var(--fw-bold);
+  overflow-wrap: anywhere;
+}
+.image-preview__zoom,
+.image-preview__close {
+  flex: none;
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: 24px;
+  background: var(--color-black);
+  color: #c4adff;
+}
+.image-preview__viewer {
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: rgba(17, 17, 20, 0.35);
+}
+.image-preview__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.image-preview.is-zoomed .image-preview__image {
+  height: auto;
+}
+@media print {
+  .image-preview { display: none !important; }
+}
+
 /* ===== WEB 탭 : Commerce 이미지 쇼케이스 ===== */
 .commerce-showcase {
   display: grid;

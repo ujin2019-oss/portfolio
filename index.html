@@ -2251,6 +2251,17 @@
        ========================================================= -->
   <div data-include="./components/footer.html"></div>
 
+  <dialog class="image-preview" aria-labelledby="image-preview-title">
+    <div class="image-preview__toolbar">
+      <p id="image-preview-title" class="image-preview__title">이미지 미리보기</p>
+      <button type="button" class="image-preview__zoom" aria-pressed="false">확대</button>
+      <button type="button" class="image-preview__close" aria-label="이미지 미리보기 닫기" autofocus>닫기 ×</button>
+    </div>
+    <div class="image-preview__viewer" tabindex="0" role="region" aria-label="이미지 보기">
+      <img class="image-preview__image" alt="" />
+    </div>
+  </dialog>
+
   <!-- ===== GSAP + ScrollTrigger (CDN) ===== -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>

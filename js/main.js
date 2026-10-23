@@ -1,3 +1,66 @@
+/* ALL PROJECT / WEB and PRINT image links open in the current page. */
+(() => {
+  function initImagePreview() {
+    const projects = document.querySelector("#allproject");
+    const dialog = document.querySelector(".image-preview");
+    if (!projects || !dialog || typeof dialog.showModal !== "function") return;
+
+    const image = dialog.querySelector(".image-preview__image");
+    const title = dialog.querySelector(".image-preview__title");
+    const viewer = dialog.querySelector(".image-preview__viewer");
+    const zoom = dialog.querySelector(".image-preview__zoom");
+    let opener = null;
+
+    projects.addEventListener("click", (event) => {
+      const link = event.target.closest("a[href]");
+      if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      const panel = link.closest(".ap-panel");
+      if (!panel || !["web", "print", "marketing"].includes(panel.dataset.category || panel.dataset.panel)) return;
+      const url = new URL(link.href, document.baseURI);
+      if (!/\.(png|jpe?g|webp|gif|avif|svg)$/i.test(url.pathname)) return;
+
+      event.preventDefault();
+      opener = link;
+      const label = link.querySelector(".print-card__title, .ap-card__title")?.textContent.trim()
+        || link.getAttribute("aria-label")
+        || link.querySelector("img")?.alt
+        || "이미지 미리보기";
+      title.textContent = label;
+      image.alt = label;
+      image.src = url.href;
+      dialog.classList.remove("is-zoomed");
+      zoom.setAttribute("aria-pressed", "false");
+      zoom.textContent = "확대";
+      document.documentElement.classList.add("image-preview-open");
+      dialog.showModal();
+      viewer.scrollTo(0, 0);
+    });
+
+    zoom.addEventListener("click", () => {
+      const enlarged = dialog.classList.toggle("is-zoomed");
+      zoom.setAttribute("aria-pressed", String(enlarged));
+      zoom.textContent = enlarged ? "화면에 맞추기" : "확대";
+      viewer.scrollTo(0, 0);
+    });
+    dialog.querySelector(".image-preview__close").addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    // The native dialog also handles Escape and traps focus while open.
+    dialog.addEventListener("close", () => {
+      document.documentElement.classList.remove("image-preview-open");
+      image.removeAttribute("src");
+      opener?.focus({ preventScroll: true });
+      opener = null;
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initImagePreview, { once: true });
+  } else {
+    initImagePreview();
+  }
+})();
+
 /* =============================================================
    main.js
    - 메인 페이지(index.html) 전용 스크립트
