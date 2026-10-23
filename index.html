@@ -2254,8 +2254,18 @@
   <dialog class="image-preview" aria-labelledby="image-preview-title">
     <div class="image-preview__toolbar">
       <p id="image-preview-title" class="image-preview__title">이미지 미리보기</p>
-      <button type="button" class="image-preview__zoom" aria-pressed="false">확대</button>
-      <button type="button" class="image-preview__close" aria-label="이미지 미리보기 닫기" autofocus>닫기 ×</button>
+      <button type="button" class="image-preview__zoom" aria-label="이미지 확대" title="이미지 확대" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <circle cx="10.5" cy="10.5" r="6.5" />
+          <path d="m16 16 5 5M7.5 10.5h6" />
+          <path class="image-preview__zoom-plus" d="M10.5 7.5v6" />
+        </svg>
+      </button>
+      <button type="button" class="image-preview__close" aria-label="이미지 미리보기 닫기" title="닫기" autofocus>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <path d="m6 6 12 12M18 6 6 18" />
+        </svg>
+      </button>
     </div>
     <div class="image-preview__viewer" tabindex="0" role="region" aria-label="이미지 보기">
       <img class="image-preview__image" alt="" />

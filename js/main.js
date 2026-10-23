@@ -30,7 +30,8 @@
       image.src = url.href;
       dialog.classList.remove("is-zoomed");
       zoom.setAttribute("aria-pressed", "false");
-      zoom.textContent = "확대";
+      zoom.setAttribute("aria-label", "이미지 확대");
+      zoom.title = "이미지 확대";
       document.documentElement.classList.add("image-preview-open");
       dialog.showModal();
       viewer.scrollTo(0, 0);
@@ -39,7 +40,9 @@
     zoom.addEventListener("click", () => {
       const enlarged = dialog.classList.toggle("is-zoomed");
       zoom.setAttribute("aria-pressed", String(enlarged));
-      zoom.textContent = enlarged ? "화면에 맞추기" : "확대";
+      const zoomLabel = enlarged ? "화면에 맞추기" : "이미지 확대";
+      zoom.setAttribute("aria-label", zoomLabel);
+      zoom.title = zoomLabel;
       viewer.scrollTo(0, 0);
     });
     dialog.querySelector(".image-preview__close").addEventListener("click", () => dialog.close());
@@ -615,6 +618,14 @@
     const tabs = Array.from(document.querySelectorAll(".ap-tab"));
     if (!tabs.length) return;
 
+    const tabList = document.querySelector(".ap-tabs");
+    const mobileLayout = window.matchMedia("(max-width: 767px)");
+    const updateOrientation = () => {
+      tabList?.setAttribute("aria-orientation", mobileLayout.matches ? "horizontal" : "vertical");
+    };
+    updateOrientation();
+    mobileLayout.addEventListener("change", updateOrientation);
+
     tabs.forEach((tab) => {
       tab.addEventListener("click", () => {
         setProjectFilter(tab.dataset.tab || getCareerType());
@@ -622,11 +633,13 @@
         // Measure after switching panels so a shorter category starts at its top.
         const panel = document.querySelector(".ap-panel.is-active");
         if (!panel) return;
-        const headerHeight = parseFloat(
-          getComputedStyle(document.documentElement).getPropertyValue("--header-height")
-        ) || 0;
+        const menuStyle = getComputedStyle(tabList);
+        const menuTop = parseFloat(menuStyle.top) || 0;
+        const menuHeight = menuStyle.flexDirection === "row"
+          ? tabList.getBoundingClientRect().height + 20
+          : 0;
         window.scrollTo({
-          top: Math.max(0, window.scrollY + panel.getBoundingClientRect().top - headerHeight - 24),
+          top: Math.max(0, window.scrollY + panel.getBoundingClientRect().top - menuTop - menuHeight),
           behavior: "instant",
         });
       });

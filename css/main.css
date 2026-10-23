@@ -1735,18 +1735,27 @@ html {
 .ap-panel.is-active { display: block; }
 @media (max-width: 767px) {
   .all-project__inner {
-    grid-template-columns: 72px minmax(0, 1fr);
-    gap: 20px 12px;
+    display: block;
+  }
+  .ap-head {
+    margin-bottom: 20px;
   }
   .ap-tabs {
+    top: calc(var(--header-height) + 12px);
+    flex-direction: row;
+    justify-content: flex-start;
     gap: 8px;
+    margin-bottom: 20px;
+    padding-block: 8px;
+    background: var(--color-bg);
   }
   .ap-tab {
-    width: 48px;
+    width: auto;
+    aspect-ratio: auto;
     min-height: 44px;
-    padding: 0;
-    font-size: 11px;
-    letter-spacing: 0.02em;
+    padding: 9px 20px;
+    border-radius: var(--radius-full);
+    font-size: var(--fs-caption);
   }
   .all-project .ap-grid,
   .all-project .print-grid,
@@ -1813,27 +1822,45 @@ html.image-preview-open body {
   grid-template-rows: auto minmax(0, 1fr);
   gap: 16px;
 }
-.image-preview::backdrop { background: rgba(0, 0, 0, 0.78); }
+.image-preview::backdrop {
+  background: rgba(0, 0, 0, 0.78);
+}
 .image-preview__toolbar {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
 }
 .image-preview__title {
-  flex: 1;
-  min-width: 0;
-  font-weight: var(--fw-bold);
-  overflow-wrap: anywhere;
+  /* Keep the dialog's accessible name without displaying a heading. */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 .image-preview__zoom,
 .image-preview__close {
   flex: none;
-  min-height: 44px;
-  padding: 8px 14px;
-  border-radius: 24px;
-  background: var(--color-black);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  background: rgba(118, 118, 128, 0.24);
   color: #c4adff;
 }
+.image-preview__zoom:hover,
+.image-preview__close:hover {
+  background: rgba(196, 173, 255, 0.2);
+}
+.image-preview__toolbar button svg { width: 22px; height: 22px; }
+.image-preview.is-zoomed .image-preview__zoom-plus { display: none; }
 .image-preview__viewer {
   overflow: auto;
   overscroll-behavior: contain;
