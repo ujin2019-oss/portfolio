@@ -1741,7 +1741,7 @@ html {
     margin-bottom: 20px;
   }
   .ap-tabs {
-    top: calc(var(--header-height) + 12px);
+    top: var(--header-height);
     flex-direction: row;
     justify-content: flex-start;
     gap: 8px;
@@ -1862,6 +1862,8 @@ html.image-preview-open body {
 .image-preview__toolbar button svg { width: 22px; height: 22px; }
 .image-preview.is-zoomed .image-preview__zoom-plus { display: none; }
 .image-preview__viewer {
+  min-width: 0;
+  min-height: 0;
   overflow: auto;
   overscroll-behavior: contain;
   background: rgba(17, 17, 20, 0.35);
@@ -1872,7 +1874,10 @@ html.image-preview-open body {
   object-fit: contain;
 }
 .image-preview.is-zoomed .image-preview__image {
-  height: auto;
+  width: var(--preview-zoom-width, 200%);
+  height: var(--preview-zoom-height, auto);
+  max-width: none;
+  margin-inline: auto;
 }
 @media print {
   .image-preview { display: none !important; }

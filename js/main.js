@@ -38,12 +38,24 @@
     });
 
     zoom.addEventListener("click", () => {
+      if (!image.naturalWidth || !image.naturalHeight) return;
+      const fitScale = Math.min(
+        viewer.clientWidth / image.naturalWidth,
+        viewer.clientHeight / image.naturalHeight
+      );
+      image.style.setProperty("--preview-zoom-width", `${image.naturalWidth * fitScale * 2}px`);
+      image.style.setProperty("--preview-zoom-height", `${image.naturalHeight * fitScale * 2}px`);
       const enlarged = dialog.classList.toggle("is-zoomed");
       zoom.setAttribute("aria-pressed", String(enlarged));
       const zoomLabel = enlarged ? "화면에 맞추기" : "이미지 확대";
       zoom.setAttribute("aria-label", zoomLabel);
       zoom.title = zoomLabel;
-      viewer.scrollTo(0, 0);
+      // Start at the image center instead of jumping to its top edge.
+      viewer.scrollTo({
+        left: enlarged ? Math.max(0, (image.offsetWidth - viewer.clientWidth) / 2) : 0,
+        top: enlarged ? Math.max(0, (image.offsetHeight - viewer.clientHeight) / 2) : 0,
+        behavior: "instant",
+      });
     });
     dialog.querySelector(".image-preview__close").addEventListener("click", () => dialog.close());
     dialog.addEventListener("click", (event) => {
