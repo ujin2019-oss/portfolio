@@ -642,6 +642,22 @@
       tab.addEventListener("click", () => {
         setProjectFilter(tab.dataset.tab || getCareerType());
 
+        if (mobileLayout.matches) {
+          // Use a non-sticky anchor after the new panel's layout has settled.
+          requestAnimationFrame(() => {
+            const heading = document.querySelector(".ap-head");
+            if (!heading) return;
+            const headerHeight = parseFloat(
+              getComputedStyle(document.documentElement).getPropertyValue("--header-height")
+            ) || 0;
+            window.scrollTo({
+              top: Math.max(0, window.scrollY + heading.getBoundingClientRect().top - headerHeight),
+              behavior: "instant",
+            });
+          });
+          return;
+        }
+
         // Measure after switching panels so a shorter category starts at its top.
         const panel = document.querySelector(".ap-panel.is-active");
         if (!panel) return;
