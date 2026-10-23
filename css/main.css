@@ -1672,9 +1672,15 @@ html {
   padding-block: var(--section-gap) clamp(56px, 7vw, 96px); /* 하단 여백 → 아래 브릿지와 시각적으로 분리 */
 }
 .all-project__inner {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 48px);
   max-width: var(--container-max);
   margin: 0 auto;
   padding-inline: var(--container-padding);
+}
+.ap-head {
+  grid-column: 2;
 }
 .ap-eyebrow {
   font-size: var(--fs-h2);
@@ -1685,15 +1691,26 @@ html {
   line-height: 1.15;
 }
 .ap-tabs {
+  /* Sticky stays inside this section's grid row and leaves with its last card. */
+  position: sticky;
+  top: calc(var(--header-height) + 24px);
+  grid-column: 1;
+  grid-row: 2;
+  align-self: start;
+  z-index: 10;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
-  margin-top: clamp(18px, 2.4vw, 32px);
-  margin-bottom: clamp(36px, 4.5vw, 64px);
+  padding: 0;
 }
 .ap-tab {
-  padding: 9px 20px;
-  border-radius: var(--radius-full);
+  display: grid;
+  place-items: center;
+  width: 60px;
+  aspect-ratio: 1;
+  padding: 0;
+  border-radius: 50%;
   background: var(--color-black);
   color: var(--color-white);
   font-size: var(--fs-caption);
@@ -1709,8 +1726,34 @@ html {
   background: var(--color-sub); /* 활성 탭: 연퍼플 */
   color: var(--color-white);
 }
-.ap-panel { display: none; }
+.ap-panel {
+  display: none;
+  grid-column: 2;
+  grid-row: 2;
+  min-width: 0;
+}
 .ap-panel.is-active { display: block; }
+@media (max-width: 767px) {
+  .all-project__inner {
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 20px 12px;
+  }
+  .ap-tabs {
+    gap: 8px;
+  }
+  .ap-tab {
+    width: 48px;
+    min-height: 44px;
+    padding: 0;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+  }
+  .all-project .ap-grid,
+  .all-project .print-grid,
+  .all-project .commerce-showcase {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 .ap-subtitle {
   margin: 0 0 clamp(16px, 2vw, 28px);
   color: var(--color-text-sub);

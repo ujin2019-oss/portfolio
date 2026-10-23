@@ -555,6 +555,17 @@
     tabs.forEach((tab) => {
       tab.addEventListener("click", () => {
         setProjectFilter(tab.dataset.tab || getCareerType());
+
+        // Measure after switching panels so a shorter category starts at its top.
+        const panel = document.querySelector(".ap-panel.is-active");
+        if (!panel) return;
+        const headerHeight = parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue("--header-height")
+        ) || 0;
+        window.scrollTo({
+          top: Math.max(0, window.scrollY + panel.getBoundingClientRect().top - headerHeight - 24),
+          behavior: "instant",
+        });
       });
     });
 

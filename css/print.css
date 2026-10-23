@@ -177,6 +177,10 @@
     display: block !important;
   }
 
+  .all-project__inner {
+    display: block !important;
+  }
+
   .container,
   .all-project__inner,
   .marketing__inner {
