@@ -1886,7 +1886,7 @@ html.image-preview-open body {
 /* ===== WEB 탭 : Commerce 이미지 쇼케이스 ===== */
 .commerce-showcase {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: clamp(10px, 1.2vw, 18px);
   margin-bottom: clamp(42px, 5vw, 72px);
 }
