@@ -2326,6 +2326,80 @@ html.image-preview-open body {
 .marketing__cta-arrow { width: 1em; height: 1em; flex: none; }
 .marketing__orb:hover .marketing__cta-go { color: var(--color-main1); }
 .marketing__orb:hover { transform: scale(1.03); }
+/* CHAK: reuse the ModooMath introduction with a single app device. */
+.project--chak { background: linear-gradient(160deg, #f5f8ff 0%, #e7eefb 100%); }
+.project--chak .project-modoo__body { align-items: center; padding-bottom: 40px; }
+.project--chak .project-modoo__visual { justify-content: center; }
+.project--chak .chak__stage { display: flex; justify-content: center; width: 100%; }
+.project--chak .chak__phone {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  width: min(100%, 310px);
+  aspect-ratio: 380 / 820;
+  padding: 10px;
+  border-radius: 36px;
+  background: #202833;
+  box-shadow: 0 22px 50px rgba(31, 61, 114, .2);
+}
+.project--chak .project-modoo__phone-screen { border-radius: 26px; background: #fff; }
+.project--chak .project-modoo__image {
+  border-radius: 0;
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+  transition: none;
+}
+.project--chak .project-modoo__phone:hover .project-modoo__image,
+.project--chak .project-modoo__phone:focus-within .project-modoo__image { object-position: center; }
+.project--chak .project-modoo__title { color: #2754d5; }
+.project--chak .project-toggle[aria-pressed="true"],
+.project--chak .project-modoo__meta { background-color: #2754d5; }
+.project--chak .project-modoo__actions .btn-outline { color: #2754d5; border-color: #2754d5; }
+.project--chak .project-modoo__actions .btn-outline:hover { background-color: #2754d5; color: #fff; }
+.project--chak .project-modoo__desc { line-height: 1.8; }
+.chak__scope { color: #596b84; font-size: 14px; line-height: 1.8; margin-top: 16px; }
+.chak__tool-text { font-size: 14px; line-height: 1.6; }
+/* CHAK v2: show Before / After simultaneously, without a toggle. */
+.project--chak-comparison .chak__stage {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(16px, 2vw, 28px);
+  width: min(100%, 620px);
+}
+.chak__comparison-item { min-width: 0; margin: 0; }
+.chak__comparison-label { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-bottom: 20px; }
+.chak__comparison-label strong { color: #647083; font-size: 14px; font-weight: 700; letter-spacing: .12em; }
+.chak__comparison-label span { color: #596b84; font-size: 13px; text-align: center; word-break: keep-all; }
+.chak__comparison-item--after .chak__comparison-label strong { color: #2754d5; }
+.project--chak-comparison .chak__phone { width: min(100%, 260px); margin-inline: auto; padding: 8px; border-radius: 30px; }
+.project--chak-comparison .project-modoo__phone-screen { border-radius: 22px; }
+.project--chak-comparison .project-modoo__body { padding-block: 42px; }
+.project--chak-comparison .project-modoo__meta-inner {
+  padding-top: clamp(32px, 4vh, 48px);
+  padding-bottom: clamp(32px, 4vh, 48px);
+}
+@media (max-width: 1100px) and (min-width: 768px) {
+  .project--chak-comparison .project-modoo__body { grid-template-columns: 1fr; gap: 42px; }
+  .project--chak-comparison .project-modoo__info { max-width: 720px; margin-inline: auto; }
+}
+@media (max-width: 767px) {
+  .project--chak .chak__phone { width: min(100%, 280px); }
+  .project--chak .project-modoo__hint { max-width: 100%; font-size: 13px; }
+  .project--chak .project-modoo__details { column-gap: 16px; }
+  .project--chak .project-modoo__tools { flex-wrap: wrap; }
+  .project--chak-comparison .chak__phone { width: 100%; padding: 6px; border-radius: 23px; }
+  .project--chak-comparison .project-modoo__phone-screen { border-radius: 17px; }
+  .project--chak-comparison .project-modoo__body { padding-top: 60px; }
+  .chak__comparison-label { min-height: 54px; margin-bottom: 14px; }
+}
+@media (max-width: 480px) {
+  .project--chak-comparison .chak__stage { grid-template-columns: 1fr; gap: 32px; }
+  .project--chak-comparison .chak__phone { width: min(100%, 280px); padding: 9px; border-radius: 32px; }
+  .project--chak-comparison .project-modoo__phone-screen { border-radius: 23px; }
+  .chak__comparison-label { min-height: 0; }
+}
 @keyframes mkt-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
