@@ -514,7 +514,7 @@
     content: "PRINT";
   }
 
-  .ap-panel[data-panel="marketing"]::before {
+  .ap-panel[data-category="web"]::before {
     content: "WEB";
   }
 
@@ -554,12 +554,12 @@
     padding-top: 1.4mm !important;
   }
 
-  .ap-panel[data-panel="marketing"] .fb-card:nth-child(10) {
+  .ap-panel[data-category="web"] .fb-card:nth-child(10) {
     break-before: auto;
     page-break-before: auto;
   }
 
-  .ap-panel[data-panel="marketing"] .fb-card:nth-child(9) {
+  .ap-panel[data-category="web"] .fb-card:nth-child(9) {
     break-after: auto;
     page-break-after: auto;
   }
@@ -571,42 +571,42 @@
     align-items: start !important;
   }
 
-  .ap-panel[data-panel="marketing"] {
+  .ap-panel[data-category="web"] {
     margin-top: 0 !important;
     padding-top: 0 !important;
     break-inside: avoid;
     page-break-inside: avoid;
   }
 
-  .ap-panel[data-panel="marketing"] .fb-card {
+  .ap-panel[data-category="web"] .fb-card {
     min-height: 0 !important;
     break-inside: avoid;
     page-break-inside: avoid;
   }
 
-  .ap-panel[data-panel="marketing"] .fb-card__top {
+  .ap-panel[data-category="web"] .fb-card__top {
     padding: 1.4mm 2.2mm 1.1mm !important;
   }
 
-  .ap-panel[data-panel="marketing"] .fb-card__avatar {
+  .ap-panel[data-category="web"] .fb-card__avatar {
     width: 6.6mm !important;
     height: 6.6mm !important;
   }
 
-  .ap-panel[data-panel="marketing"] .fb-card__media {
+  .ap-panel[data-category="web"] .fb-card__media {
     height: 30mm !important;
     aspect-ratio: auto !important;
     background: #f4f4f4 !important;
   }
 
-  .ap-panel[data-panel="marketing"] .fb-card__media img {
+  .ap-panel[data-category="web"] .fb-card__media img {
     width: 100% !important;
     height: 100% !important;
     object-fit: contain !important;
     object-position: center !important;
   }
 
-  .ap-panel[data-panel="marketing"] .fb-card__stats {
+  .ap-panel[data-category="web"] .fb-card__stats {
     padding: 1.1mm 2.2mm !important;
   }
 
@@ -1159,5 +1159,223 @@
 
   .footer::after {
     content: none !important;
+  }
+
+  /* A4 geometry must not inherit viewport-dependent screen dimensions. */
+  html,
+  body {
+    width: 190mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  .image-preview,
+  .image-preview::backdrop {
+    display: none !important;
+  }
+
+  .project {
+    display: block !important;
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .project__inner,
+  .project-modoo__body,
+  .dental__inner {
+    flex: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* Five thumbnail rows fit on one page, including the heading. */
+  .ap-grid {
+    gap: 3mm 5mm !important;
+  }
+
+  .ap-card__media {
+    height: 31mm !important;
+    aspect-ratio: auto !important;
+  }
+
+  .ap-browser__bar,
+  .ap-mobile__bar {
+    height: 4mm !important;
+    min-height: 0 !important;
+    padding-inline: 1.5mm !important;
+    gap: 1.5mm !important;
+  }
+
+  .ap-browser__dots {
+    gap: 1mm !important;
+  }
+
+  .ap-browser__dots i {
+    width: 1.3mm !important;
+    height: 1.3mm !important;
+  }
+
+  .ap-card__info {
+    padding-top: 2mm !important;
+    gap: 1mm !important;
+  }
+
+  .ap-card__title {
+    font-size: 9pt !important;
+  }
+
+  .ap-card__cat {
+    font-size: 8pt !important;
+  }
+
+  .ap-panel[data-category="web"],
+  .ap-panel[data-panel="print"] {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  /* WEB contains two independent pages: SNS and product thumbnails. */
+  .ap-panel[data-category="web"] {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  .ap-grid--sns {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 2.4mm 4mm !important;
+  }
+
+  .ap-subtitle {
+    font-size: 11pt !important;
+    margin-bottom: 4mm !important;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .ap-subtitle:has(+ .commerce-showcase) {
+    break-before: page;
+    page-break-before: always;
+    margin-top: 0 !important;
+  }
+
+  .commerce-showcase {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 4mm !important;
+    margin: 0 !important;
+  }
+
+  .commerce-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .commerce-card__media {
+    height: 45mm !important;
+    aspect-ratio: auto !important;
+  }
+
+  .commerce-card__media img {
+    object-fit: contain !important;
+  }
+
+  /* Product collages use three equal squares instead of the desktop grid. */
+  .rice-gift__visual {
+    width: 176mm !important;
+    height: 100mm !important;
+    padding: 5mm !important;
+    margin-inline: auto !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-template-rows: 1fr !important;
+    gap: 4mm !important;
+    align-items: center !important;
+    background-size: 8mm 8mm !important;
+  }
+
+  .rice-gift__visual .rice-gift__thumb {
+    grid-row: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 !important;
+    align-self: center !important;
+  }
+
+  .arch-ad__visual {
+    width: 176mm !important;
+    height: 135mm !important;
+    padding: 5mm !important;
+    margin-inline: auto !important;
+    grid-template-columns: minmax(0, 1fr) 40mm !important;
+    gap: 4mm !important;
+    background-size: 8mm 8mm !important;
+  }
+
+  .arch-ad__stack {
+    grid-template-columns: 1fr !important;
+    gap: 2mm !important;
+  }
+
+  /* CHAK is a comparison, so neither phone inherits the overlay position. */
+  .project--chak .chak__stage {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    align-items: center !important;
+    height: 126mm !important;
+    gap: 8mm !important;
+  }
+
+  .project--chak .chak__phone {
+    position: relative !important;
+    inset: auto !important;
+    width: 46mm !important;
+    height: 100mm !important;
+    max-height: none !important;
+    padding: 1.5mm !important;
+    border-radius: 5mm !important;
+  }
+
+  .project--chak .project-modoo__phone-screen {
+    border-radius: 3.5mm !important;
+  }
+
+  .project--chak .project-modoo__image {
+    object-fit: contain !important;
+  }
+
+  .chak__comparison-label {
+    min-height: 0 !important;
+    margin-bottom: 3mm !important;
+  }
+
+  .chak__comparison-label strong,
+  .chak__comparison-label span,
+  .chak__scope {
+    font-size: 9pt !important;
+  }
+
+  .tracksy-visual {
+    transform: none !important;
+  }
+
+  .marketing__eyebrow {
+    font-size: 10pt !important;
+  }
+
+  .marketing__title {
+    font-size: 20pt !important;
+  }
+
+  .marketing__cta-main {
+    font-size: 12pt !important;
+  }
+
+  .marketing__cta-go {
+    font-size: 10pt !important;
+  }
+
+  .footer__copy {
+    transform: none !important;
+    padding-right: 0 !important;
+    width: 100% !important;
   }
 }
